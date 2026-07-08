@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Add";
+}
+
+<h1>Add</h1>
+
+
+<form method="post" action="Add">
+    <table>
+        <tr>
+            <td>Number 1:</td>
+            <td><input type="number" name="number1" /></td>
+        </tr>
+        <tr>
+            <td>Number 2:</td>
+            <td><input type="number" name="number2" /></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Add" /></td>
+            <td>
+                @TempData["res"]
+            </td>
+        </tr>
+    </table>
+</form>

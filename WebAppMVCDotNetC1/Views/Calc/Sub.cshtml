@@ -1,0 +1,27 @@
+﻿@model WebAppMVCDotNetC1.Models.MyvaluesModel
+@{
+    ViewData["Title"] = "Sub";
+}
+
+<h1>Sub</h1>
+
+
+<form method="post" action="Sub">
+    <table>
+        <tr>
+            <td>Number 1:</td>
+            <td><input type="number" asp-for="x" /></td>
+        </tr>
+        <tr>
+            <td>Number 2:</td>
+            <td><input type="number" asp-for="y" /></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Sub" /></td>
+            <td>
+                @TempData["res"]
+            </td>
+        </tr>
+    </table>
+</form>
+
