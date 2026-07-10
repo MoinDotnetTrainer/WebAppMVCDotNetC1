@@ -1,6 +1,4 @@
-﻿
-using System.ComponentModel.DataAnnotations;
-
+﻿using System.ComponentModel.DataAnnotations;
 namespace WebAppMVCDotNetC1.Models
 {
     public class EmpModel
