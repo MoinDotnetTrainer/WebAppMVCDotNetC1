@@ -1,0 +1,69 @@
+﻿@model BusinessLogicLayer.Models.Users
+
+@{
+    ViewData["Title"] = "AddEmp";
+}
+
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h3>Users Registration</h3>
+                    </div>
+
+                    <div class="card-body">
+
+                        <form action="AddUsers" method="post">
+                            <!-- Employee Name -->
+                            <div class="mb-3">
+                                <label class="form-label">User Name</label>
+                                <input type="text" class="form-control" asp-for="Name" placeholder="Enter Employee Name" required>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" asp-for="Email" placeholder="Enter Email" required>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control" asp-for="Password" placeholder="Enter Password" required>
+                            </div>
+
+                          
+
+                            <!-- Buttons -->
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-success">
+                                    Insert Employee
+                                </button>
+
+                                <button type="reset" class="btn btn-secondary">
+                                    Reset
+                                </button>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>

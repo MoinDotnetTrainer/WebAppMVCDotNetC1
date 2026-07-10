@@ -24,8 +24,8 @@ namespace WebAppMVCDotNetC1.Controllers
         {
             // where the data with be transfered --> database
 
-            _db.EmpModels.Add(data);
-            _db.SaveChanges();
+            _db.EmpModels.Add(data);  // 
+            _db.SaveChanges();// 
 
             // to insert into db using ef
             return RedirectToAction("DisplayEmp");
