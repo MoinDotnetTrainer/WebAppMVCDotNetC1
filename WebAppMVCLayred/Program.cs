@@ -26,6 +26,14 @@ namespace WebAppMVCLayred
             builder.Services.AddScoped<IUsers, UsersTask>();
             builder.Services.AddScoped<IOrders, OrdersBlSP>();
 
+
+            // register a session
+            builder.Services.AddSession(option =>
+            {
+                option.IdleTimeout = TimeSpan.FromMinutes(20);
+                option.Cookie.IsEssential = true;
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -36,6 +44,8 @@ namespace WebAppMVCLayred
                 app.UseHsts();
             }
 
+
+            app.UseSession();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

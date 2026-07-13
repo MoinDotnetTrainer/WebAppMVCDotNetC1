@@ -38,6 +38,7 @@ namespace WebAppMVCLayred.Controllers
             var res = await _iuser.Validate(data);
             if (res)
             {
+                HttpContext.Session.SetString("loginsession","userloggedin");
                 return RedirectToAction("HomePage");
             }
             else
@@ -49,11 +50,18 @@ namespace WebAppMVCLayred.Controllers
 
         public IActionResult HomePage()
         {
+            if (HttpContext.Session.GetString("loginsession")==null)
+            {
+                return RedirectToAction("Login","Usersops");
+            }
+
+            ViewBag.sessionvalue = HttpContext.Session.GetString("skey");
             return View();
         }
 
         public IActionResult Logout()
         {
+            HttpContext.Session.Clear();
             return RedirectToAction("Login");
         }
     }

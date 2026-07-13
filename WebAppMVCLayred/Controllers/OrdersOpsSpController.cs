@@ -19,6 +19,10 @@ namespace WebAppMVCLayred.Controllers
         [HttpGet]
         public IActionResult AddOrders()
         {
+            if (HttpContext.Session.GetString("loginsession") == null)
+            {
+                return RedirectToAction("Login", "Usersops");
+            }
             return View();
         }
 
@@ -33,6 +37,10 @@ namespace WebAppMVCLayred.Controllers
         [HttpGet]
         public async Task<IActionResult> GetOrders()
         {
+            if (HttpContext.Session.GetString("loginsession") == null)
+            {
+                return RedirectToAction("Login", "Usersops");
+            }
             var res = await _iorders.OrdersList();
             return View(res);
         }
@@ -40,6 +48,10 @@ namespace WebAppMVCLayred.Controllers
         [HttpGet]
         public async Task<IActionResult> GetOrdersByID(int OrderID)
         {
+            if (HttpContext.Session.GetString("loginsession") == null)
+            {
+                return RedirectToAction("Login", "Usersops");
+            }
             var res = await _iorders.GetOrdersByID(OrderID);
             return View(res);
         }
@@ -47,6 +59,10 @@ namespace WebAppMVCLayred.Controllers
         [HttpGet]
         public async Task<IActionResult> EditOrders(int OrderID)
         {
+            if (HttpContext.Session.GetString("loginsession") == null)
+            {
+                return RedirectToAction("Login", "Usersops");
+            }
             var res = await _iorders.GetOrdersByID(OrderID);
             return View(res);
         }
@@ -61,6 +77,10 @@ namespace WebAppMVCLayred.Controllers
         [HttpGet]
         public async Task<IActionResult> DeleteOrders(int OrderID)
         {
+            if (HttpContext.Session.GetString("loginsession") == null)
+            {
+                return RedirectToAction("Login", "Usersops");
+            }
             var res = await _iorders.GetOrdersByID(OrderID);
             return View(res);
         }
