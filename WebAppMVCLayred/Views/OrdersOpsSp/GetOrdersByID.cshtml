@@ -1,0 +1,92 @@
+﻿@model BusinessLogicLayer.Models.Orders
+@{
+    ViewData["Title"] = "GetOrdersByID";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="card shadow border-0">
+
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Order Details</h3>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold">
+                            OrderID
+                        </div>
+                        <div class="col-md-8">
+                            @Model.OrderID
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold">
+                            Full Name
+                        </div>
+                        <div class="col-md-8">
+                            @Model.Name
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold">
+                            Expiry date
+                        </div>
+                        <div class="col-md-8">
+                            @Model.ExpiryDate
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold">
+                            Qty
+                        </div>
+                        <div class="col-md-8">
+                            @Model.Qty
+                        </div>
+                    </div>
+
+                    <hr />
+
+
+
+
+
+                </div>
+
+                <div class="card-footer text-end">
+
+                    <a asp-action="EditOrders"
+                       asp-route-id="@Model.OrderID"
+                       class="btn btn-warning">
+                        <i class="bi bi-pencil-square"></i> Edit
+                    </a>
+
+                    <a asp-action="GetOrders"
+                       class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Back
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

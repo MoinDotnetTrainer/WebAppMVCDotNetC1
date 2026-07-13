@@ -14,6 +14,13 @@ namespace BusinessLogicLayer.Irepo
 
         Task AddOrders(Orders data);
 
-        Task<IList<Orders>> OrdersList();
+        Task<IList<Orders>> OrdersList();  // getting all data
+
+        Task<Orders> GetOrdersByID(int OrderID);  // getting a row info not a table info
+        
+        Task UpdateOrders(Orders data);
+
+        Task DeleteOrders(int OrderID);
+
     }
 }

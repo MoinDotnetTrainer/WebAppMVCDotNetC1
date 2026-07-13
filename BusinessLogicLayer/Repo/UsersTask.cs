@@ -1,5 +1,6 @@
 ﻿using BusinessLogicLayer.Irepo;
 using BusinessLogicLayer.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,11 @@ namespace BusinessLogicLayer.Repo
         {
             await _db.Users.AddAsync(data);
             await _db.SaveChangesAsync();
+        }
+
+        public async Task<bool> Validate(LoginModel data)
+        {
+            return await _db.Users.AnyAsync(x => x.Email == data.Email && x.Password == data.Password);
         }
     }
 }

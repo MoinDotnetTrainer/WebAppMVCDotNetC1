@@ -1,16 +1,19 @@
 ﻿using BusinessLogicLayer.Irepo;
 using BusinessLogicLayer.Models;
+using BusinessLogicLayer.Repo;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAppMVCLayred.Controllers
 {
-    public class OrdersTaskController : Controller
+    public class OrdersOpsSpController : Controller
     {
         public readonly IOrders _iorders;
-        public OrdersTaskController(IOrders iorders)
+        public OrdersOpsSpController(IOrders iorders)
         {
             _iorders = iorders;
         }
+
+       
 
 
         [HttpGet]

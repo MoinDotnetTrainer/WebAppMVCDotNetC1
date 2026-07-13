@@ -24,6 +24,7 @@ namespace WebAppMVCLayred
 
             builder.Services.AddScoped<IOrders, OrdersOps>();
             builder.Services.AddScoped<IUsers, UsersTask>();
+            builder.Services.AddScoped<IOrders, OrdersBlSP>();
 
             var app = builder.Build();
 
@@ -44,7 +45,7 @@ namespace WebAppMVCLayred
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=UsersOps}/{action=Login}/{id?}");
 
             app.Run();
         }

@@ -27,5 +27,28 @@ namespace BusinessLogicLayer.Repo
         {
             return await _db.Orders.ToListAsync();
         }
+
+        public async Task<Orders> GetOrdersByID(int OrderID)
+        {
+            var res = await _db.Orders.FindAsync(OrderID);
+            return res;
+        }
+
+        public async Task UpdateOrders(Orders data)
+        {
+            _db.Orders.Update(data);  // taking to add 
+            await _db.SaveChangesAsync(); // keeps on executing
+        }
+
+
+        public async Task DeleteOrders(int OrderID)
+        {
+            var result = await _db.Orders.FindAsync(OrderID);
+            if (result != null)
+            {
+                _db.Orders.Remove(result);
+                await _db.SaveChangesAsync();        
+            }
+        }
     }
 }

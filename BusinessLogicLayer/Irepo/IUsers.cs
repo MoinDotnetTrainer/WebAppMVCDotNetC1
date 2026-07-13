@@ -10,5 +10,7 @@ namespace BusinessLogicLayer.Irepo
     public interface IUsers
     {
         Task AddUsers(Users data);
+
+        Task<bool> Validate(LoginModel data);
     }
 }
