@@ -22,8 +22,15 @@ namespace WebAppMVCLayred.Controllers
         [HttpPost]
         public async Task<IActionResult> AddUsers(Users data)
         {
-            await _iuser.AddUsers(data);
-            return View();
+            if (ModelState.IsValid)
+            {
+                await _iuser.AddUsers(data);
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet]
@@ -35,24 +42,37 @@ namespace WebAppMVCLayred.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel data)
         {
-            var res = await _iuser.Validate(data);
-            if (res)
+
+            if (ModelState.IsValid)  // TF 
             {
-                HttpContext.Session.SetString("loginsession","userloggedin");
-                return RedirectToAction("HomePage");
+                var res = await _iuser.Validate(data);
+                if (res)
+                {
+                    HttpContext.Session.SetString("loginsession", "userloggedin");
+                    return RedirectToAction("HomePage");
+                }
+                else
+                {
+                    TempData["errormsg"] = "Invalid Credentials";
+                    // return View();
+
+                    return PartialView("Errorpartial");
+                }
             }
             else
             {
-                TempData["errormsg"] = "Invalid Credentials";
-                return View();
+                ModelState.AddModelError("", "");
             }
+
+                return View();
         }
+
 
         public IActionResult HomePage()
         {
-            if (HttpContext.Session.GetString("loginsession")==null)
+            if (HttpContext.Session.GetString("loginsession") == null)
             {
-                return RedirectToAction("Login","Usersops");
+                return RedirectToAction("Login", "Usersops");
             }
 
             ViewBag.sessionvalue = HttpContext.Session.GetString("skey");
@@ -63,6 +83,14 @@ namespace WebAppMVCLayred.Controllers
         {
             HttpContext.Session.Clear();
             return RedirectToAction("Login");
+        }
+
+        public IActionResult GetArrayData()
+        {
+            int x = 34;
+            int y = 0;
+            TempData["res"] = x / y;
+            return View();
         }
     }
 }

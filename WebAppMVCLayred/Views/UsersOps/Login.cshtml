@@ -42,6 +42,7 @@
                                        class="form-control" asp-for="Email"
                                        placeholder="Enter email address" />
 
+
                             </div>
 
                             <span asp-validation-for="Email"
@@ -70,9 +71,9 @@
 
                         <div class="d-flex justify-content-between mb-3">
 
-                          <span style="color:red">
+                            <span style="color:red">
                                 @TempData["errormsg"]
-                          </span>
+                            </span>
 
                             <a asp-action="AddUsers" class="text-decoration-none">
                                 DOnt have Account click here
@@ -96,3 +97,6 @@
 
     </div>
 </div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -27,7 +27,7 @@ namespace WebAppMVCLayred.Controllers
 
 
             HttpContext.Session.SetString("skey", System.DateTime.Now.ToString());
-            
+
             return RedirectToAction("Page2");
         }
         public IActionResult Page2()
@@ -49,9 +49,9 @@ namespace WebAppMVCLayred.Controllers
             };
 
 
-           // ViewBag.stddata = list;
+            // ViewBag.stddata = list;
 
-              ViewData["stddata"] = list;
+            ViewData["stddata"] = list;
             ViewBag.sessionvalue = HttpContext.Session.GetString("skey");
 
             return View();

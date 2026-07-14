@@ -11,8 +11,14 @@ namespace BusinessLogicLayer.Models
     {
         [Key]
         public int ID { get; set; }
+
+        [Required(ErrorMessage ="Name Required")]
         public string Name { get; set; }
+
+        [Required(ErrorMessage = "Email Required")]
         public string Email { get; set; }
+
+        [Required(ErrorMessage = "Password Required")]
         public string Password { get; set; }
     }
 }
