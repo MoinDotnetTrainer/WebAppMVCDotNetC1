@@ -1,0 +1,60 @@
+﻿@model IEnumerable<BusinessLogicLayer.Models.Pan>
+
+@{
+    ViewData["Title"] = "GetPanList";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h1>GetPanList</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PanUserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PanNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._Aadhar.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._Aadhar.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._Aadhar.Dob)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PanUserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PanNo)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item._Aadhar.Name)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._Aadhar.Address)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item._Aadhar.Dob)
+                </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

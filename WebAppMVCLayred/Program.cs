@@ -25,6 +25,7 @@ namespace WebAppMVCLayred
             builder.Services.AddScoped<IOrders, OrdersOps>();
             builder.Services.AddScoped<IUsers, UsersTask>();
             builder.Services.AddScoped<IOrders, OrdersBlSP>();
+            builder.Services.AddScoped<IAadhar, AadharBl>();
 
 
             // register a session

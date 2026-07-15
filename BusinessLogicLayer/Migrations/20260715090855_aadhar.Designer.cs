@@ -4,6 +4,7 @@ using BusinessLogicLayer.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusinessLogicLayer.Migrations
 {
     [DbContext(typeof(AppDb))]
-    partial class AppDbModelSnapshot : ModelSnapshot
+    [Migration("20260715090855_aadhar")]
+    partial class aadhar
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,47 +47,6 @@ namespace BusinessLogicLayer.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("aadhar");
-                });
-
-            modelBuilder.Entity("BusinessLogicLayer.Models.Aadhar1", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Dob")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("aadhar1");
-                });
-
-            modelBuilder.Entity("BusinessLogicLayer.Models.Country", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<string>("CName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Country");
                 });
 
             modelBuilder.Entity("BusinessLogicLayer.Models.DataAnnotationEx", b =>
@@ -160,33 +122,6 @@ namespace BusinessLogicLayer.Migrations
                     b.Property<int>("AadharID")
                         .HasColumnType("int");
 
-                    b.Property<string>("PanNo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PanUserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("AadharID")
-                        .IsUnique();
-
-                    b.ToTable("pan");
-                });
-
-            modelBuilder.Entity("BusinessLogicLayer.Models.Pan1", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<int>("AadharID")
-                        .HasColumnType("int");
-
                     b.Property<int>("PanNo")
                         .HasColumnType("int");
 
@@ -195,29 +130,9 @@ namespace BusinessLogicLayer.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("pan1");
-                });
+                    b.HasIndex("AadharID");
 
-            modelBuilder.Entity("BusinessLogicLayer.Models.State", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<int>("CountryID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("StateName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("CountryID");
-
-                    b.ToTable("State");
+                    b.ToTable("pan");
                 });
 
             modelBuilder.Entity("BusinessLogicLayer.Models.T1", b =>
@@ -373,23 +288,12 @@ namespace BusinessLogicLayer.Migrations
             modelBuilder.Entity("BusinessLogicLayer.Models.Pan", b =>
                 {
                     b.HasOne("BusinessLogicLayer.Models.Aadhar", "_Aadhar")
-                        .WithOne("_pan")
-                        .HasForeignKey("BusinessLogicLayer.Models.Pan", "AadharID")
+                        .WithMany()
+                        .HasForeignKey("AadharID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("_Aadhar");
-                });
-
-            modelBuilder.Entity("BusinessLogicLayer.Models.State", b =>
-                {
-                    b.HasOne("BusinessLogicLayer.Models.Country", "_Country")
-                        .WithMany("_state")
-                        .HasForeignKey("CountryID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("_Country");
                 });
 
             modelBuilder.Entity("BusinessLogicLayer.Models.T2", b =>
@@ -410,17 +314,6 @@ namespace BusinessLogicLayer.Migrations
                         .HasForeignKey("BusinessLogicLayer.Models.T4", "abovetable");
 
                     b.Navigation("T3Data");
-                });
-
-            modelBuilder.Entity("BusinessLogicLayer.Models.Aadhar", b =>
-                {
-                    b.Navigation("_pan")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("BusinessLogicLayer.Models.Country", b =>
-                {
-                    b.Navigation("_state");
                 });
 
             modelBuilder.Entity("BusinessLogicLayer.Models.T1", b =>
