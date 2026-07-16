@@ -27,5 +27,10 @@ namespace BusinessLogicLayer.Repo
         {
             return await _db.Users.AnyAsync(x => x.Email == data.Email && x.Password == data.Password);
         }
+
+        public async Task<Users> GetUsers(string Email)
+        {
+            return await (from s in _db.Users where s.Email == Email select s).FirstOrDefaultAsync();
+        }
     }
 }

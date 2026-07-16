@@ -12,5 +12,7 @@ namespace BusinessLogicLayer.Irepo
         Task AddUsers(Users data);
 
         Task<bool> Validate(LoginModel data);
+
+        Task<Users> GetUsers(string Email);     
     }
 }

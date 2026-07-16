@@ -1,6 +1,7 @@
 using BusinessLogicLayer.Irepo;
 using BusinessLogicLayer.Models;
 using BusinessLogicLayer.Repo;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -35,6 +36,10 @@ namespace WebAppMVCLayred
                 option.Cookie.IsEssential = true;
             });
 
+
+            // auth & auth
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -56,6 +61,8 @@ namespace WebAppMVCLayred
 
             app.UseRouting();
 
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

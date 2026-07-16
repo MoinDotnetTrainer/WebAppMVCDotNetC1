@@ -1,7 +1,10 @@
 ﻿using BusinessLogicLayer.Irepo;
 using BusinessLogicLayer.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
+using System.Security.Claims;
 namespace WebAppMVCLayred.Controllers
 {
     public class UsersOpsController : Controller
@@ -42,14 +45,36 @@ namespace WebAppMVCLayred.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel data)
         {
+            ClaimsIdentity? identity = null;
+            bool isautheticate = false;
 
             if (ModelState.IsValid)  // TF 
             {
                 var res = await _iuser.Validate(data);
+                var myroles = await _iuser.GetUsers(data.Email);
+
                 if (res)
                 {
                     HttpContext.Session.SetString("loginsession", "userloggedin");
-                    return RedirectToAction("HomePage");
+
+                    // auth & autho
+                    // claimidentity
+
+                    identity = new ClaimsIdentity(new[]
+                    {
+                   new Claim(ClaimTypes.Email,data.Email), // xyz
+                   new Claim(ClaimTypes.Role,myroles.Role), // admin
+                   }, CookieAuthenticationDefaults.AuthenticationScheme);
+                    isautheticate = true;
+
+
+
+                    if (isautheticate)
+                    {
+                        var principals = new ClaimsPrincipal(identity);
+                        var redirect = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principals);
+                        return RedirectToAction("HomePage", "UsersOps");  //take the roles
+                    }
                 }
                 else
                 {
@@ -64,10 +89,11 @@ namespace WebAppMVCLayred.Controllers
                 ModelState.AddModelError("", "");
             }
 
-                return View();
+            return View();
         }
 
 
+        [AllowAnonymous]
         public IActionResult HomePage()
         {
             if (HttpContext.Session.GetString("loginsession") == null)

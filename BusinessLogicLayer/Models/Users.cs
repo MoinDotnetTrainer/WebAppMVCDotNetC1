@@ -20,5 +20,8 @@ namespace BusinessLogicLayer.Models
 
         [Required(ErrorMessage = "Password Required")]
         public string Password { get; set; }
+
+        [Required]
+        public string Role { get; set; }
     }
 }

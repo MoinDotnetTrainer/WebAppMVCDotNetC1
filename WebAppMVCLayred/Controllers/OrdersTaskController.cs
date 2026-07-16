@@ -1,5 +1,6 @@
 ﻿using BusinessLogicLayer.Irepo;
 using BusinessLogicLayer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAppMVCLayred.Controllers
@@ -14,6 +15,8 @@ namespace WebAppMVCLayred.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
+
         public IActionResult AddOrders()
         {
             return View();

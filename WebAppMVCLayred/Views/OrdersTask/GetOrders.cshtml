@@ -52,11 +52,16 @@
                                         @item.Qty
                                     </td>
 
-                                    <td>
-                                        <a asp-action="GetOrdersByID" asp-route-OrderID="@item.OrderID">Get Order By ID</a>|
-                                        <a asp-action="EditOrders" asp-route-OrderID="@item.OrderID">Edit</a>|
-                                        <a asp-action="DeleteOrders" asp-route-OrderID="@item.OrderID">Delete</a>
 
+                                    @if (this.User.IsInRole("Admin")  && this.User.Identity.IsAuthenticated)
+                                    {
+                                        <td>
+                                            <a asp-action="GetOrdersByID" asp-route-OrderID="@item.OrderID">Get Order By ID</a>|
+                                            <a asp-action="EditOrders" asp-route-OrderID="@item.OrderID">Edit</a>|
+                                            <a asp-action="DeleteOrders" asp-route-OrderID="@item.OrderID">Delete</a>
+                                        </td>
+                                    }
+                                    <td>
 
                                     </td>
 
