@@ -10,11 +10,16 @@
 <body class="bg-light">
 
     <a asp-action="AddOrders" asp-controller="OrdersTask">Add Orders</a>
+    <button-helper text="Save Changes"
+                   type="submit"
+                   css-class="btn btn-danger">
+    </button-helper>
     <div class="container mt-5">
 
         <div class="card shadow">
             <div class="card-header bg-primary text-white">
-                <h3 class="text-center">Orders List</h3>
+                @* <h3 class="text-center">Orders List</h3> *@
+                <heading level="6" text="Welcome to ASP.NET Core" class="text-center"></heading>
             </div>
 
             <div class="card-body">

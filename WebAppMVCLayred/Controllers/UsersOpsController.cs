@@ -73,7 +73,7 @@ namespace WebAppMVCLayred.Controllers
                     {
                         var principals = new ClaimsPrincipal(identity);
                         var redirect = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principals);
-                        return RedirectToAction("HomePage", "UsersOps");  //take the roles
+                        return RedirectToAction("HomePage", "UsersOps",redirect);  //take the roles
                     }
                 }
                 else

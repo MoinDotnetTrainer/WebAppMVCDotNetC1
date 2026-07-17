@@ -1,0 +1,22 @@
+[
+  {
+    "Name": "Ash",
+    "EMail": "As@yahoo.com",
+    "Mobil": "9988776655",
+    "Age": 22,
+    "sal": 23435.345,
+    "Status": true,
+    "Car": null,
+    "Parnts": {
+      "Father": "Varma",
+      "Mother": "sunita",
+      "Siblings": [ "xyz", "sam", "ash" ]
+    },
+    "Quali": [ "+12", "BTech", "Mtech" ],
+    "Hobbies": [ "Swimming", "Cricket" ]
+  },
+  { "Name": "Moin" }
+]
+
+
+// sql , no sql
